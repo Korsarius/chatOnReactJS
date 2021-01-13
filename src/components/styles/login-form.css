@@ -1,0 +1,55 @@
+.LoginForm form {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: papayawhip;
+    position: fixed; top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+.LoginForm h1 {
+    text-align: center;
+  }
+
+.LoginForm {
+  height: 100%;
+  background-image: url("../images/bg_login.jpg");
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: cover;
+}
+
+#log-in{
+  width: 100%;
+}
+
+.LoginForm h1{
+  margin-bottom: 0;
+}
+
+.error-value{
+  color: red;
+  display: block;
+  margin-bottom: 5px;
+  height: 31.6px;
+  padding: 2.5px 0 0 5px;
+  background-color: #fcd3d8;
+  border: 1px solid #ffb9c0;
+  border-radius: 2px;
+}
+
+.ant-btn-primary,
+.ant-btn,
+.ant-btn-primary:focus,
+.ant-btn:focus {
+  background-color: #70543f;
+  border-color: #f87b19;
+}
+
+.ant-btn-primary:hover,
+.ant-btn:hover {
+  background-color: #b5916d;
+  border-color: #70543f;
+}
