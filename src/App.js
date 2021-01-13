@@ -66,7 +66,7 @@ const GETGQL = (url, headers = {}) => (query = "", variables = {}) =>
 //   return originalFetch(url, params);
 // };
 
-export const GQL = GETGQL("/graphql", {
+export const GQL = GETGQL("http://chat.fs.a-level.com.ua/graphql", {
   Authorization: "Bearer " + localStorage.authToken,
 });
 
