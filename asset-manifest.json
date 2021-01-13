@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/myproject/static/css/main.8c1f3814.chunk.css",
+    "main.js": "/myproject/static/js/main.6640c923.chunk.js",
+    "main.js.map": "/myproject/static/js/main.6640c923.chunk.js.map",
+    "runtime-main.js": "/myproject/static/js/runtime-main.363a5aff.js",
+    "runtime-main.js.map": "/myproject/static/js/runtime-main.363a5aff.js.map",
+    "static/css/2.f3081fb4.chunk.css": "/myproject/static/css/2.f3081fb4.chunk.css",
+    "static/js/2.17125ced.chunk.js": "/myproject/static/js/2.17125ced.chunk.js",
+    "static/js/2.17125ced.chunk.js.map": "/myproject/static/js/2.17125ced.chunk.js.map",
+    "index.html": "/myproject/index.html",
+    "static/css/2.f3081fb4.chunk.css.map": "/myproject/static/css/2.f3081fb4.chunk.css.map",
+    "static/css/main.8c1f3814.chunk.css.map": "/myproject/static/css/main.8c1f3814.chunk.css.map",
+    "static/js/2.17125ced.chunk.js.LICENSE.txt": "/myproject/static/js/2.17125ced.chunk.js.LICENSE.txt",
+    "static/media/user-page.css": "/myproject/static/media/icomoon.e59bf84b.woff",
+    "static/media/login-form.css": "/myproject/static/media/bg_login.5fcca269.jpg",
+    "static/media/registration-form.css": "/myproject/static/media/bg_registration.aee180ed.jpg",
+    "static/media/modal-window.css": "/myproject/static/media/icomoon.9788a34a.svg",
+    "static/media/smile-icon--btn.css": "/myproject/static/media/icomoon.db901b02.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.363a5aff.js",
+    "static/css/2.f3081fb4.chunk.css",
+    "static/js/2.17125ced.chunk.js",
+    "static/css/main.8c1f3814.chunk.css",
+    "static/js/main.6640c923.chunk.js"
+  ]
+}
