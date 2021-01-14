@@ -43,9 +43,12 @@ const UserInfo = connect(
     const [scrollToTop, setScrollToTop] = useState(0);
 
     const ref = useRef();
+    const refForm = useRef();
 
     useEffect(() => {
-      onUserFindOne(login);
+      setTimeout(() => {
+        onUserFindOne(login);
+      }, 1000);
     }, [upload]);
 
     return (
@@ -89,14 +92,14 @@ const UserInfo = connect(
             action="/upload"
             method="post"
             encType="multipart/form-data"
-            ref={ref}
+            ref={refForm}
           >
             <input
               type="file"
               name="media"
               onChange={() => {
-                console.log(ref.current);
-                onUpload(ref.current, userId);
+                console.log("ref.current: ", refForm.current);
+                onUpload(refForm.current, userId);
                 setMedia(!upload);
               }}
             />

@@ -23,7 +23,7 @@ import io from "socket.io-client";
 import { actionSaveMessages } from "./actions/chatMessages";
 // import { store } from "../App";
 
-const socket = io("/graphql");
+const socket = io("http://chat.fs.a-level.com.ua/graphql");
 if (localStorage.authToken) socket.emit("jwt", localStorage.authToken);
 
 socket.on("jwt_ok", (data) => console.log(data));
@@ -66,7 +66,7 @@ const GETGQL = (url, headers = {}) => (query = "", variables = {}) =>
 //   return originalFetch(url, params);
 // };
 
-export const GQL = GETGQL("/graphql", {
+export const GQL = GETGQL("http://chat.fs.a-level.com.ua/graphql", {
   Authorization: "Bearer " + localStorage.authToken,
 });
 
