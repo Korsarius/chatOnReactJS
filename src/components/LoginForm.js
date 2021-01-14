@@ -42,7 +42,7 @@ const NormalLoginForm = connect(
       setTimeout(
         () =>
           history.push(
-            `/myproject/auth/userId=${checkTwo`${state}AuthReducer.data.sub.id`}`
+            `/auth/userId=${checkTwo`${state}AuthReducer.data.sub.id`}`
           ),
         2000
       );
@@ -130,7 +130,7 @@ const NormalLoginForm = connect(
           >
             Log in
           </Button>
-          Or <Link to={`/myproject/registration`}> register now! </Link>
+          Or <Link to={`/registration`}> register now! </Link>
         </Form.Item>
       </Form>
       {/* {spin && <Spin tip="Loading..." size="large" /> && setTimeout(()=>{setSpin(() => true)},2000)} */}

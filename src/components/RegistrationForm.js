@@ -44,7 +44,7 @@ const RegisterFormTwo = connect(
       setTimeout(
         () =>
           history.push(
-            `/myproject/auth/userId=${checkTwo`${state}AuthReducer.data.sub.id`}`
+            `/auth/userId=${checkTwo`${state}AuthReducer.data.sub.id`}`
           ),
         2000
       );

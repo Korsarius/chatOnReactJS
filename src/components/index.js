@@ -10,7 +10,7 @@ const MainPage = () => {
   return (
     <div>
       <h1>Main Page</h1>
-      <Link to={`/myproject/login`}>Sign in</Link>
+      <Link to={`/login`}>Sign in</Link>
     </div>
   );
 };
@@ -18,19 +18,19 @@ const MainPage = () => {
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/myproject" component={MainPage} />
-      <Route exact path="/myproject/login" render={(props) => <LoginForm {...props} />} />
+      <Route exact path="/" component={MainPage} />
+      <Route exact path="/login" render={(props) => <LoginForm {...props} />} />
       <Route
         exact
-        path="/myproject/registration"
+        path="/registration"
         render={(props) => <RegistrationForm {...props} />}
       />
       <Route
-        path="/myproject/auth/userId=:userId?&chatId=:chatId?"
+        path="/auth/userId=:userId?&chatId=:chatId?"
         render={(props) => <Auth {...props} />}
       />
       <Route
-        path="/myproject/auth/userId=:userId?"
+        path="/auth/userId=:userId?"
         render={(props) => <Auth {...props} />}
       />
     </Switch>

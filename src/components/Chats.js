@@ -84,7 +84,7 @@ const Chats = connect(
             allMessages[chatId] &&
             allMessages[chatId].map((element, index) => (
               // element.text === YOUTUBE_REGEXP ? youtube(element.text) : (
-              <p className="message">
+              <p className="message" key={index.toString()}>
                 <span className="message-nick">{element.owner.nick}: </span>
                 {/* {element.text} */}
                 {EMOJI_REGEXP.test(element.text)
@@ -126,7 +126,7 @@ const Chats = connect(
             }}
           />
           <span
-            class="icon-happy"
+            className="icon-happy"
             onClick={(event) => {
               let eList = document.querySelector("#emojiList");
               counter++;

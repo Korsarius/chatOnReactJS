@@ -76,7 +76,7 @@ const UserInfo = connect(
             id="log-out"
             onClick={() => {
               onLogout();
-              history.push("/myproject/login");
+              history.push("/login");
             }}
             type="primary"
             htmlType="submit"
@@ -115,7 +115,7 @@ const UserInfo = connect(
                 {user.chats
                   ? user.chats.map((el, index) => (
                       <Link
-                        to={`/myproject/auth/userId=${state.AuthReducer.data.sub.id}&chatId=${el._id}`}
+                        to={`/auth/userId=${state.AuthReducer.data.sub.id}&chatId=${el._id}`}
                         key={el._id}
                       >
                         <li id={el["title"]}>

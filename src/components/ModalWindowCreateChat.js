@@ -120,6 +120,7 @@ const Modal = connect(
                     {usersFromChat && usersFromChat.length > 0
                       ? usersFromChat.map((item, index) => (
                           <span
+                          key={index.toString()}
                             onClick={(event) => {
                               if (
                                 usersToChat.includes(event.target.innerText)
@@ -141,6 +142,7 @@ const Modal = connect(
                     {usersToChat && usersToChat.length > 0
                       ? usersToChat.map((item, index) => (
                           <span
+                          key={index.toString()}
                             onClick={(event) => {
                               if (
                                 usersFromChat.includes(event.target.innerText)

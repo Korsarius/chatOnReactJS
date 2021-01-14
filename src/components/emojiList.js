@@ -919,9 +919,10 @@ export const EmojiList = function () {
       //   eList.style = "display: none";
       // }}
     >
-      {emojiImgCollectionTwo.map((item) => {
+      {emojiImgCollectionTwo.map((item, index) => {
         return (
           <img
+          key={index.toString()}
             className="emoji--img"
             src={`https://www.webfx.com/tools/emoji-cheat-sheet/${item[1]}`}
             alt={item[0]}
