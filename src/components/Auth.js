@@ -25,7 +25,9 @@ export const User = connect(
   mapDispatchToProps
 )(({ login, history, onUserFindOne, authUserInfo, match }) => {
   useEffect(() => {
-    onUserFindOne(login);
+    setTimeout(()=>{
+      onUserFindOne(login)
+    },1000);
     // let object = JSON.parse(localStorage.getItem("authUser"));
     // if (!localStorage.authUser) {
     //   localStorage.setItem("authUser", JSON.stringify(authUserInfo));

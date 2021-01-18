@@ -14,6 +14,7 @@ import {
   YOUTUBE_REGEXP,
   EMOJI_REGEXP,
 } from "./emojiList";
+import Messages from "./Messages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSmile } from "@fortawesome/free-solid-svg-icons";
 import "./styles/user-page.css";
@@ -54,6 +55,7 @@ const Chats = connect(
     const [scrollToBottom, setScrollToBottom] = useState(0);
 
     const ref = useRef();
+    const refMessage = useRef();
 
     useEffect(() => {
       onGetMessages(chatId);
@@ -83,20 +85,7 @@ const Chats = connect(
           {allMessages &&
             allMessages[chatId] &&
             allMessages[chatId].map((element, index) => (
-              // element.text === YOUTUBE_REGEXP ? youtube(element.text) : (
-              <p className="message" key={index.toString()}>
-                <span className="message-nick">{element.owner.nick}: </span>
-                {/* {element.text} */}
-                {EMOJI_REGEXP.test(element.text)
-                  ? (element.text = emojiSend(element.text))
-                  : element.text}
-                <span className="message-data">
-                  {new RegExp(/(-+)|(:+)/gi).test(element.createdAt)
-                    ? new Date(element.createdAt).toLocaleString()
-                    : new Date(+element.createdAt).toLocaleString()}
-                </span>
-              </p>
-              // )
+                (<Messages message={element} key={index.toString()} />)
             ))}
         </Scrollbars>
         <div className="scroll-down">

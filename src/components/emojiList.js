@@ -5,7 +5,7 @@ export const YOUTUBE_REGEXP_ID = /(=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌�
 export const EMOJI_REGEXP = /:[A-z0-9]+:/gim;
 export const IMAGE_REGEXP = /http(?:s?):\/\/(.*)(gif|jpe?g|bmp|png)$/gim;
 
-let emoji = {
+export let emoji = {
   100: "graphics/emojis/100.png ",
   1234: "graphics/emojis/1234.png",
   bowtie: "graphics/emojis/bowtie.png",
@@ -922,7 +922,7 @@ export const EmojiList = function () {
       {emojiImgCollectionTwo.map((item, index) => {
         return (
           <img
-          key={index.toString()}
+            key={index.toString()}
             className="emoji--img"
             src={`https://www.webfx.com/tools/emoji-cheat-sheet/${item[1]}`}
             alt={item[0]}
@@ -965,29 +965,47 @@ export function youtube(str) {
   }
 }
 
+function separation(arr) {
+  var emojiCode = "";
+  let level = 0;
+  var arrOfEmojis = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === ":") {
+      level++;
+    }
+    emojiCode += arr[i];
+    if (level === 2) {
+      level = 0;
+      arrOfEmojis.push(emojiCode);
+      emojiCode = "";
+      continue;
+    }
+  }
+  return arrOfEmojis;
+}
+
+export function messageText(text) {
+  let regExp = /.+?(?=:)/gi;
+  let str = "";
+  if(text.match(regExp)){
+    str = text.match(regExp)[0];
+    return str;
+  } else {
+    return text;
+  }
+}
+
 // EMOJI_REGEXP
 export function emojiSend(str) {
-  let newStr = "";
+  let emojiPathArray = [];
+  // var reg = /https.+.png/gi;
+  var regTwo = /(:.+:)/i;
   for (let key in emoji) {
-    let position = 0;
-    while (true) {
-      newStr = str.replace(
-        `${key}`,
-        `<img style="width: 25px; height: 25px;" src=https://www.webfx.com/tools/emoji-cheat-sheet/${emoji[key]} />`
-      );
-      str = newStr;
-      let find = str.indexOf(`${key}`, position);
-      if (find == -1) {
-        break;
-      }
+    if (str.includes(key)) {
+      emojiPathArray.push(regTwo.exec(str)[0]);
     }
-    // console.log("newStr IN ZAMENA: " + newStr);
   }
-  newStr = newStr.replace(/<.+>/gi, "");
-  console.log("newStr: ", newStr);
-
-  let newStr2 = str.replace(/.+(?=<)/gi,"");
-
+  let arrOfEmojis = separation(emojiPathArray[0]);
 
   // console.log('newStr: ', newStr);
   // if (YOUTUBE_REGEXP.test(newStr)) {
@@ -1001,7 +1019,7 @@ export function emojiSend(str) {
   // newStr = newStr.replace(
   //   /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/g, "");
   // newStr = newStr.replace(/http(?:s?):\/\/(.*)(gif|jpe?g|bmp|png)$/igm, "");
-  return newStr;
+  return arrOfEmojis;
 }
 
 export default EmojiList;

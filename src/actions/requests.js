@@ -264,7 +264,7 @@ export function actionUpload(form, userId) {
     let data = await dispatch(
       actionPromise(
         "uploadFile",
-        fetch("http://chat.fs.a-level.com.ua/upload", {
+        fetch("/upload", {
           method: "POST",
           headers: localStorage.authToken
             ? { Authorization: "Bearer " + localStorage.authToken }
