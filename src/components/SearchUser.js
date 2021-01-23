@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Input, Button } from "antd";
+import { Input, Button, Modal, Space } from "antd";
 import {
   actionUserFindOneOnLogin,
   actionCreateChat,
@@ -9,8 +9,52 @@ import {
 } from "../actions/requests";
 import { EmojiList, youtube, YOUTUBE_REGEXP } from "./emojiList";
 import { checkTwo } from "../App";
-import Modal from "../components/ModalWindowCreateChat";
+import MyModal from "../components/ModalWindowCreateChat";
 import "./styles/user-page.css";
+
+// For Modals (antd library)
+
+let resultCode = 0;
+
+function info() {
+  Modal.info({
+    title: "This is a notification message",
+    content: (
+      <div>
+        <p>some messages...some messages...</p>
+        <p>some messages...some messages...</p>
+      </div>
+    ),
+    onOk() {},
+  });
+  return resultCode = 0;
+}
+
+function success() {
+  Modal.success({
+    title: "Success",
+    content: "Chat has been created successfully!",
+  });
+  return resultCode = 0;
+}
+
+function error() {
+  Modal.error({
+    title: "Error",
+    content: "A personal conversation with such user already exists!",
+  });
+  return resultCode = 0;
+}
+
+function warning() {
+  Modal.warning({
+    title: "This is a warning message",
+    content: "some messages...some messages...",
+  });
+  return resultCode = 0;
+}
+
+// If user doesn't have avatar image
 
 function generateColor() {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -60,8 +104,13 @@ const SearchUser = connect(
 
     return (
       <div className="search">
+        {resultCode && resultCode === 1
+          ? success()
+          : resultCode === 2
+          ? error()
+          : ""}
         {chatCreate && (
-          <Modal
+          <MyModal
             userId={userId}
             login={login}
             updateModal={updateModal}
@@ -110,7 +159,7 @@ const SearchUser = connect(
                   {foundUser && foundUser.avatar && foundUser.avatar.url ? (
                     <img
                       id="avatarka-user-search"
-                      src={`/${foundUser.avatar.url}`}
+                      src={`http://chat.fs.a-level.com.ua/${foundUser.avatar.url}`}
                       alt="avatar"
                     ></img>
                   ) : (
@@ -122,19 +171,20 @@ const SearchUser = connect(
                     </span>
                   )}
                 </li>
-                <li>
+                <li className="write-to-user--wrapper">
                   <span className="menu-item-name">Login: </span>
                   <button
                     className="write-to-user"
                     datatitle="Write Him"
                     style={{ cursor: "pointer" }}
-                    onClick={() =>
+                    onClick={() => {
                       onChatWithSelectedUser(
                         foundUser.login,
                         state.AuthReducer.data.sub.id,
                         foundUser._id
-                      )
-                    }
+                      ).then((code) => (resultCode = code));
+                      setTimeout(() => onUserFindOne(login), 1000);
+                    }}
                   >
                     {foundUser.login}
                   </button>

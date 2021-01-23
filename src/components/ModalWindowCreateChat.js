@@ -19,7 +19,7 @@ import { checkTwo } from "../App";
 import MyPortal from "../components/MyPortal";
 import "./styles/modal-window.css";
 
-const Modal = connect(
+const MyModal = connect(
   (state) => ({
     state: state,
     foundUser: checkTwo`${state}promiseReducer.userFindOneOnLoginForCreatChat.payload.data.UserFindOne.login`,
@@ -181,4 +181,4 @@ const Modal = connect(
   }
 );
 
-export default Modal;
+export default MyModal;

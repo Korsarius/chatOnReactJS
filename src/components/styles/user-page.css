@@ -206,11 +206,14 @@ ul {
   right: 0;
 }
 
+.write-to-user--wrapper{
+  position: relative;
+}
+
 .write-to-user:hover::after {
   content: attr(datatitle);
   position: absolute;
-  left: 85%;
-  top: 50%;
+  top: -25px;
   z-index: 1;
   background: rgba(255, 255, 230, 0.9);
   font-family: Arial, sans-serif;
@@ -383,4 +386,8 @@ form input {
   color: red;
   text-align: center;
   background-color: white;
+}
+
+.anticon{
+  margin-top: 1.4px;
 }

@@ -31,7 +31,6 @@ const UserInfo = connect(
     login,
     onLogout,
     history,
-    // user,
     userId,
     onUserFindOne,
     onUpload,
@@ -50,6 +49,8 @@ const UserInfo = connect(
         onUserFindOne(login);
       }, 1000);
     }, [upload]);
+
+    // console.log('userChats: ', userChats);
 
     return (
       <div className="user-info">

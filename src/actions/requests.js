@@ -183,11 +183,43 @@ export function actionCreateChat(title, id) {
 
 export function actionChatWithSelectedUser(title, id, idSelectedUser) {
   return async function (dispatch) {
-    let data = await dispatch(
+    let chatTitles = [];
+    let resultCode = 0;
+    let response = await dispatch(
       actionPromise(
-        "createChat",
+        "findChatsPersonalConversation",
         GQL(
-          `mutation CreateChat($chat:ChatInput){
+          `query chatFindMembers($query:String){
+          ChatFind(query:$query){
+            _id
+            title
+            owner{
+              _id
+              login
+              nick
+            }
+            members{
+              _id
+              login
+              nick
+            }
+          }
+        }`,
+          {
+            query: JSON.stringify([{ ___owner: id }]),
+          }
+        )
+      )
+    );
+    for (let chat of response.data.ChatFind) {
+      chatTitles.push(chat.title);
+    }
+    if (!chatTitles.includes(title)) {
+      let data = await dispatch(
+        actionPromise(
+          "createChat",
+          GQL(
+            `mutation CreateChat($chat:ChatInput){
             ChatUpsert(chat:$chat){
               _id
               title
@@ -198,16 +230,22 @@ export function actionChatWithSelectedUser(title, id, idSelectedUser) {
               }
             }
           }`,
-          {
-            chat: {
-              title: title,
-              members: [{ _id: id }, { _id: idSelectedUser }],
-            },
-          }
+            {
+              chat: {
+                title: title,
+                members: [{ _id: id }, { _id: idSelectedUser }],
+              },
+            }
+          )
         )
-      )
-    );
-    await dispatch(actionFindAllChats(id));
+      );
+      await dispatch(actionFindAllChats(id));
+      resultCode += 1;
+      return resultCode;
+    } else if (chatTitles.includes(title)) {
+      resultCode += 2;
+      return resultCode;
+    }
   };
 }
 
