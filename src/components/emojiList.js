@@ -4,6 +4,7 @@ export const YOUTUBE_REGEXP = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?
 export const YOUTUBE_REGEXP_ID = /(=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/gim;
 export const EMOJI_REGEXP = /:[A-z0-9]+:/gim;
 export const IMAGE_REGEXP = /http(?:s?):\/\/(.*)(gif|jpe?g|bmp|png)$/gim;
+export const LINK_REGEXP = /http(?:s?):\/\/(?:www\.)?.+/gim;
 
 export let emoji = {
   100: "graphics/emojis/100.png ",
@@ -940,26 +941,23 @@ export const EmojiList = function () {
 // YOUTUBE_REGEXP
 export function youtube(str) {
   let array = [];
-  array = str.match(
-    /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/gim
-  );
-  console.log("array: ", array);
+  array = str.match(YOUTUBE_REGEXP);
   if (array) {
-    console.log(array);
-    let linkOnYouTube = `<span>${str.replace(YOUTUBE_REGEXP, "")}</span><br />`;
-    for (let i = 0; i < array.length; i++) {
-      linkOnYouTube += `<iframe width="560" height="315" src="https://www.youtube.com/embed/${array[
-        i
-      ]
-        .replace(YOUTUBE_REGEXP, array[i].match(YOUTUBE_REGEXP_ID))
-        .replace(
-          "=",
-          ""
-        )}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br /><a target="_blank" href="${
-        array[i]
-      }">${array[i]}</a><br />`;
-    }
-    return linkOnYouTube;
+    return array;
+    // let linkOnYouTube = `<span>${str.replace(YOUTUBE_REGEXP, "")}</span><br />`;
+    // for (let i = 0; i < array.length; i++) {
+    //   linkOnYouTube += `<iframe width="560" height="315" src="https://www.youtube.com/embed/${array[
+    //     i
+    //   ]
+    //     .replace(YOUTUBE_REGEXP, array[i].match(YOUTUBE_REGEXP_ID))
+    //     .replace(
+    //       "=",
+    //       ""
+    //     )}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br /><a target="_blank" href="${
+    //     array[i]
+    //   }">${array[i]}</a><br />`;
+    // }
+    // return linkOnYouTube;
   } else {
     return str;
   }
@@ -985,14 +983,25 @@ function separation(arr) {
 }
 
 export function messageText(text) {
-  let regExp = /.+?(?=:)/gi;
-  let str = "";
-  if(text.match(regExp)){
-    str = text.match(regExp)[0];
-    return str;
-  } else {
+  let newStr = "";
+  let arr = [];
+  if (!text.match(/:.+?:/gi)) {
     return text;
+  } else {
+    arr = text.split(/:.+?:/gi);
+    for (let i = 0; i < arr.length - 1; i++) {
+      newStr += arr[i];
+    }
+    return newStr;
   }
+}
+
+export function messageLink(text){
+  let arr = [];
+  if(text.match(LINK_REGEXP)){
+    arr = text.match(LINK_REGEXP);
+  }
+  return arr;
 }
 
 // EMOJI_REGEXP
@@ -1020,6 +1029,28 @@ export function emojiSend(str) {
   //   /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/g, "");
   // newStr = newStr.replace(/http(?:s?):\/\/(.*)(gif|jpe?g|bmp|png)$/igm, "");
   return arrOfEmojis;
+}
+
+// IMAGE_REGEXP
+export function images(str) {
+  let array = [];
+  array = str.match(IMAGE_REGEXP);
+  if (array) {
+    return array;
+  }
+  // let array = [];
+  // array = str.match(IMAGE_REGEXP);
+  // console.log("array: ", array);
+  // if (array) {
+  //   let image = `<span>${str.replace(IMAGE_REGEXP, "")}</span><br />`;
+  //   for (let i = 0; i < array.length; i++) {
+  //     image += `<a href = "${array[i]}" target = "_blank"><img style="width: 200px; height: 200px; padding: 5px 5px;" src="${array[i]}" /></a>`;
+  //     console.log(array);
+  //   }
+  //   return image;
+  // } else {
+  //   return "";
+  // }
 }
 
 export default EmojiList;

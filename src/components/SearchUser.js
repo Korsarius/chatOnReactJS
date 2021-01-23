@@ -98,6 +98,7 @@ const SearchUser = connect(
           type="primary"
           htmlType="submit"
           className="login-form-button"
+          disabled={nick.length < 2 ? true : false}
         >
           Search
         </Button>
@@ -110,6 +111,7 @@ const SearchUser = connect(
                     <img
                       id="avatarka-user-search"
                       src={`/${foundUser.avatar.url}`}
+                      alt="avatar"
                     ></img>
                   ) : (
                     <span
@@ -147,17 +149,7 @@ const SearchUser = connect(
                 </li>
               </>
             ) : (
-              find && (
-                <span
-                  style={{
-                    color: "red",
-                    textAlign: "center",
-                    backgroundColor: "white",
-                  }}
-                >
-                  Not Found
-                </span>
-              )
+              find && <span className="user-not-found">Not Found</span>
             )}
           </ul>
         </div>

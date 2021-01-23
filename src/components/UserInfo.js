@@ -64,7 +64,7 @@ const UserInfo = connect(
           {(checkTwo`${state}promiseReducer.userFindOne.payload.data.UserFindOne.avatar` && (
             <img
               id="avatarka"
-              src={`/${checkTwo`${state}promiseReducer.userFindOne.payload.data.UserFindOne.avatar.url`}`}
+              src={`http://chat.fs.a-level.com.ua/${checkTwo`${state}promiseReducer.userFindOne.payload.data.UserFindOne.avatar.url`}`}
             ></img>
           )) || (
             <span

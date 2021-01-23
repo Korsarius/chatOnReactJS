@@ -360,7 +360,27 @@ form input {
   cursor: pointer;
 }
 
-.emojis{
+.emojis {
   width: 25px;
   height: 25px;
+}
+
+.youtube-frame {
+  max-width: 100%;
+  width: 560px;
+  height: 315px;
+}
+
+.message--img {
+  width: 200px;
+  height: 200px;
+  padding: 5px 5px;
+}
+
+.user-not-found {
+  margin-left: -7px;
+  width: 100%;
+  color: red;
+  text-align: center;
+  background-color: white;
 }
